@@ -1,16 +1,44 @@
-# React + Vite
+# Hotel POS Lite — React + Zustand + Dexie + Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Offline-first restaurant POS with table tickets, a Kitchen Display System (KDS), live “Not sent / In kitchen / Served” counters, printable receipts, and basic reporting. Built with **React**, **Zustand**, **Dexie (IndexedDB)**, **Tailwind**, and Vite. Optional hooks for Firebase.
 
-Currently, two official plugins are available:
+![POS Screenshot](docs/pos-screen.png)
+![KDS Screenshot](docs/kds-screen.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Tables & Tickets**
+  - Create/update tickets per table, merge/transfer between tables
+  - Save guest name, park/load cart to ticket
+- **Cart & Orders**
+  - Modifiers/options per item, discounts, service charge, tip (incl. tax math)
+  - Checkout with cash/card; auto-print receipt (print stylesheet included)
+- **Kitchen Display System (KDS)**
+  - Send only **deltas** to kitchen (prevents double-send)
+  - Toggle item status: `pending ↔ done`, “All done”, priority bumping
+  - **Live counters** on POS: _Not sent_, _In kitchen_, _Served_
+- **Persistence & Offline**
+  - Dexie/IndexedDB for catalog, tables, tickets, kitchen queue, orders
+  - Zustand store persistence for lightweight UI state
+- **Reporting (basic)**
+  - Sales by item/category, totals in time range
+- **Nice DX**
+  - Tailwind component classes, clean layout, responsive grid
+  - Small, readable store with pure helper functions
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- **Frontend:** React (Vite), React Router
+- **State:** Zustand (persist middleware)
+- **Storage:** Dexie (IndexedDB)
+- **Styling:** Tailwind CSS (+ @tailwindcss/forms)
+- **Optional backend hooks:** Firebase (upsertProduct, addOrder, etc. — no hard requirement)
+
+---
+
+## 📦 Project Structure
+
