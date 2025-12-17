@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+
+
+/* ---------- Base layer ---------- */
+@layer base {
+  html, body, #root { height: 100%; }
+  body { @apply bg-gray-50 text-gray-900 antialiased; }
+}
+
+/* ---------- Component layer (reusable classes) ---------- */
+@layer components {
+  /* Layout shells */
+  .app-shell { @apply max-w-7xl mx-auto p-3 sm:p-4 lg:p-6; }
+  .section { @apply card; }
+
+  /* Card */
+  .card { @apply bg-white border rounded-2xl p-4 shadow-card; }
+
+  /* Buttons */
+  .btn { @apply inline-flex items-center gap-2 px-3 py-2 rounded-xl border transition-colors; }
+  .btn-ghost { @apply border-transparent hover:bg-gray-100; }
+  .btn-outline { @apply bg-white hover:bg-gray-50; }
+  .btn-primary { @apply bg-brand-600 border-brand-600 text-white hover:bg-brand-700; }
+  .btn-danger { @apply border-red-600 text-red-700 hover:bg-red-50; }
+  .btn-warning { @apply border-amber-500 text-amber-700 hover:bg-amber-50; }
+  .btn-icon { @apply inline-flex items-center justify-center rounded-lg border w-8 h-8; }
+
+  /* Inputs */
+  .field { @apply w-full rounded-lg border-gray-300 focus:border-brand-500 focus:ring-brand-500; }
+  .field-sm { @apply field px-2 py-1 text-sm; }
+  .select { @apply field bg-white; }
+
+  /* Badges */
+  .badge { @apply text-[11px] px-1.5 py-0.5 rounded bg-gray-100 text-gray-700; }
+  .badge-soft { @apply badge; }
+  .badge-strong { @apply text-xs px-2 py-0.5 rounded-lg font-medium; }
+
+  /* Status badges for POS lines */
+  .status-not { @apply badge bg-amber-100 text-amber-800; }
+  .status-kitchen { @apply badge bg-sky-100 text-sky-800; }
+  .status-served { @apply badge bg-emerald-100 text-emerald-800; }
+
+  /* Toolbar chips */
+  .chip { @apply inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-gray-900 text-white text-sm; }
+
+  /* Headings */
+  .h1 { @apply text-2xl font-semibold; }
+  .h2 { @apply text-xl font-semibold; }
+
+  /* KDS cards */
+  .ticket { @apply card; }
+  .ticket-priority { @apply ring-2 ring-red-500; }
+
+  /* Totals rows */
+  .totals-row { @apply flex justify-between py-0.5; }
+  .totals-row-strong { @apply totals-row font-semibold; }
+}
+
+/* ---------- Utilities layer (extras, print, responsive helpers) ---------- */
+@layer utilities {
+  .grid-pos { @apply grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4; }
+  .grid-kds { @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3; }
+
+  @media print {
+    .no-print { display: none !important; }
+    .print-area { display: block !important; }
+    body { @apply bg-white; }
+  }
+}
+
+
+/* PRINT RULES — make sure invoice actually renders on PDF/Printer */
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+  /* Hide everything by default */
+  body * { visibility: hidden !important; }
+
+  /* Only show the print area */
+  .print-area, .print-area * {
+    visibility: visible !important;
+  }
+
+  /* Position the print area at the top-left so it fills the page */
+  .print-area {
+    position: absolute !important;
+    inset: 0 !important;
+    margin: 0 !important;
+    padding: 0 12mm !important;
+    background: white !important;
+  }
+
+  /* Invoice inner layout */
+  .invoice-wrapper {
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: #111;
+  }
+}
+
+/* Optional: nicer screen appearance if you ever preview the invoice */
+.invoice-wrapper {
+  max-width: 680px;
+}
