@@ -2,8 +2,12 @@
 
 Offline-first restaurant POS with table tickets, a Kitchen Display System (KDS), live “Not sent / In kitchen / Served” counters, printable receipts, and basic reporting. Built with **React**, **Zustand**, **Dexie (IndexedDB)**, **Tailwind**, and Vite. Optional hooks for Firebase.
 
-![POS Screenshot](docs/pos-screen.png)
-![KDS Screenshot](docs/kds-screen.png)
+![POS Screenshot]
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/d71edd79-7213-4329-bdb9-27e5f12efe9f" />
+
+![KDS Screenshot]
+<img width="2940" height="1912" alt="image" src="https://github.com/user-attachments/assets/29605169-9c6f-47bb-9cf0-b6252721f1bd" />
+
 
 ---
 
